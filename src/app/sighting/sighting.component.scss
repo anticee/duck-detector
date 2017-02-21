@@ -1,0 +1,60 @@
+#input {
+  width: 300px;
+  margin: 0 0 0 5px;
+}
+
+.radio-button-custom {
+  margin-bottom: 5px;
+}
+
+.btn-custom {
+  margin: 10px 0 0 0;
+  height: 35px;
+}
+
+#count-form-label, #species-form-label {
+  margin: 8px 0;
+}
+
+.form-container, .sighting-container{
+  width: 90%;
+  padding: 5px;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 2px;
+  margin: 5px 0 0 5px;
+  background-color: white;
+  color: #000;
+}
+
+.sighting {
+  padding: 5px;
+  display: inline-block;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 5px 0 0 5px;
+}
+
+.date-time, .species{
+  display: inline-block;
+}
+
+.date-time {
+  float: right;
+  opacity: 0.6;
+  font-size: 0.75em;
+}
+
+.separator {
+  border-bottom: 1px solid darkgray;
+}
+
+div {
+  margin-top: 5px;
+}
+
+#results-btn {
+  display: block;
+  maxgin: 10px;
+}

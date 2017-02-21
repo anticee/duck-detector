@@ -1,0 +1,1 @@
+Bug when changing clicking sighting > changing auto to 100px; elements shift

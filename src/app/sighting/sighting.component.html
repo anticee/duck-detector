@@ -1,0 +1,64 @@
+  <div class="form-container">
+    <form [formGroup]="sightingForm" (ngSubmit)="addSighting(sightingForm.value)">
+      <div class="form-group row">
+        <label id="species-form-label" for="species-form" class="col-sm-2 col-form-label">Species</label>
+        <div class="col-sm-4">
+          <select class="form-control" id="species-form" formControlName="species" ngDefaultControl [(ngModel)]="speciesModel"
+            required>
+            <option *ngFor="let item of this.species" value={{item.name}}>{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label id="count-form-label" for="count-form" class="col-sm-2 col-form-label">Count</label>
+        <div class="col-sm-4">
+          <input formControlName="count" ngDefaultControl [(ngModel)]="countModel" id="count-form" type="number"
+                 required min="1" class="form-control">
+        </div>
+      </div>
+      <div class="form-group row" [class.invalid]="!sightingForm.controls['description'].valid">
+        <label for="description-form" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-4">
+          <textarea formControlName="description" ngDefaultControl name="description" [(ngModel)]="descriptionModel"
+                    required minlength="5" maxlength="200"
+                    class="form-control" id="description-form" rows="3"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+
+  <div class="sighting-container">
+    <div class="form-inline">
+      <input id="input" class="form-control" type="text" placeholder="filter ducks by species"
+        [(ngModel)]="sightingFilt">
+      <div class="btn-group radio-button-custom">
+        <button type="radio" class="btn btn-default" [ngClass]="{'active': order==='asc'}"
+                (click)="sortSightings('asc')">Asc</button>
+        <button type="radio" class="btn btn-default" [ngClass]="{'active': order==='desc'}"
+                (click)="sortSightings('desc')">Desc</button>
+      </div>
+    </div>
+
+      <div class="sighting" *ngFor="let item of (this.sightings | duckFilter:sightingFilt) | slice:0:results; let i = index"
+           [style.height]="getHeight(i)">
+        <div class="sighting-labels" (click)="switchHeight[i] = !switchHeight[i];">
+          <div class="species">{{item.species}}</div>
+          <div class="date-time">{{item.dateTime}}</div>
+          <div class="count">Amount: {{item.count}}</div>
+          <div class="separator"></div>
+          <div class="desc">{{item.description}}</div>
+        </div>
+
+        <button class="btn btn-default pull-left btn-custom" (click)="addConfirmation(item.id)">
+          <span id="glyph-conf" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{item.confirmations}} Confirmation(s)
+        </button>
+        <button class="btn btn-danger pull-right btn-custom" (click)="removeSighting(item.id)">
+          <span id="glyph-remove" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    <button *ngIf="this.sightings != null && this.sightings.length > results" id="results-btn" class="btn btn-default"
+            (click)="results = results+4">Load more results..</button>
+  </div>

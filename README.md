@@ -1,4 +1,4 @@
-# Vincit Duck-Detector
+# Duck-Detector
 npm start to run.
 
 requires duck-be backend to already be running on port 8081:
